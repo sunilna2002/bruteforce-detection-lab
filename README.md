@@ -66,7 +66,6 @@ for i in {1..5000}; do
 
 This simulates a brute-force SSH attack targeting the `root` account.
 
----
 
 # Step 2 – Simulating Successful SSH Logins
 
@@ -89,6 +88,8 @@ cat auth.log
 ```
 
 This command displays all generated authentication logs.
+
+![log viewing](https://github.com/sunilna2002/bruteforce-detection-lab/blob/main/Successfull%20Viewing.png)
 
 ---
 
@@ -136,13 +137,27 @@ This helps identify the most active IP addresses.
 
 ---
 
-# Step 7 – Displaying Top Results
+# Step 7 – report.exe (script)
 
 ```bash
+
+echo " Top Successful Logins"
+
 grep -i "successful" auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head -10
+
+echo "Top 10 Suspicious IDs"
+
+grep -i "Failed" auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head -10
+```
+```bash
+
+./report.exe
+
 ```
 
-This displays the top 10 most frequent successful login IPs.
+This displays the top 10 most frequent successful and suspicious login IPs.
+
+![Final Rport](https://github.com/sunilna2002/bruteforce-detection-lab/blob/main/final%20report.png)
 
 ---
 
@@ -157,31 +172,7 @@ This displays the top 10 most frequent successful login IPs.
 
 ---
 
-## Screenshots
-
-
-
-* `screenshots/failed-logins.png`
-* `screenshots/successful-logins.png`
-
----
-
-## Folder Structure
-
-```text
-bruteforce-detection-Lab/
-│
-├── README.md
-├── auth.log
-├── screenshots/
-│   ├── failed-logins.png
-│   └── successful-logins.png
-└── commands.txt
-```
-
----
-
-## commands.txt Example
+## commands.txt
 
 ```text
 # Generate failed logins
@@ -202,6 +193,16 @@ grep -i "successful" auth.log | awk '{print $(NF-3)}'
 
 # Count frequency
 grep -i "successful" auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
+
+#Final Report
+
+echo " Top Successful Logins"
+
+grep -i "successful" auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head -10
+
+echo "Top 10 Suspicious IDs"
+
+grep -i "Failed" auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head -10
 ```
 
 ---
@@ -235,6 +236,6 @@ Sunil Rajpal
 
 GitHub Portfolio:
 
-Sunil Rajpal Cyber Portfolio[https://github.com/sunilna2002/Sunil-Rajpal-Cyber-Portfolio](https://github.com/sunilna2002/Sunil-Rajpal-Cyber-Portfolio)
+Sunil Rajpal Cyber Portfolio  [https://github.com/sunilna2002/Sunil-Rajpal-Cyber-Portfolio] (https://github.com/sunilna2002/Sunil-Rajpal-Cyber-Portfolio)
 
 ---
